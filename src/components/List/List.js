@@ -5,12 +5,16 @@ export default class List extends React.Component {
     super(props);
   }
 
+  removeItem = index => {
+    this.props.onItemRemove(index);
+  };
+
   render() {
     let items = this.props.items || [];
 
     items = items.map((item, index) => (
       <li className="item" key={index}>
-        {item.name}
+        {item.name} <button onClick={e => this.removeItem(index)}>remove</button>
       </li>
     ));
 

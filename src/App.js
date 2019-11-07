@@ -33,6 +33,14 @@ export default class App extends React.Component {
     }));
   };
 
+  handleItemRemove = index => {
+    this.setState(state => {
+      const items = state.items;
+      items.splice(index, 1);
+      return items;
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -43,7 +51,11 @@ export default class App extends React.Component {
           onFormSubmit={this.handleFormSubmit}
         />
         <br />
-        <List name={this.state.name} items={this.state.items} />
+        <List
+          name={this.state.name}
+          items={this.state.items}
+          onItemRemove={this.handleItemRemove}
+        />
       </div>
     );
   }

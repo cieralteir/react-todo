@@ -5,12 +5,12 @@ export default class Form extends React.Component {
     super(props);
   }
 
-  handleChange = (e, key) => {
+  onChange = (e, key) => {
     e.persist();
     this.props.onFormChange(key, e.target.value);
   };
 
-  handleSubmit = e => {
+  onSubmit = e => {
     e.preventDefault();
     this.props.onFormSubmit();
   };
@@ -19,12 +19,12 @@ export default class Form extends React.Component {
     return (
       <div className="form">
         <h3>{this.props.name} Form</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.onSubmit}>
           <input
             name="name"
             placeholder="Name"
             value={this.props.form.name}
-            onChange={e => this.handleChange(e, "name")}
+            onChange={e => this.onChange(e, "name")}
           />
           <br />
           <br />
