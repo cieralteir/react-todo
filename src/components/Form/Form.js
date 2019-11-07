@@ -3,24 +3,16 @@ import React from "react";
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      form: {
-        name: ""
-      }
-    };
   }
 
   handleChange = (e, key) => {
-    this.setState(state => ({
-      form: { ...state.form, [key]: e.target.value }
-    }));
     e.persist();
+    this.props.onFormChange(key, e.target.value);
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("submit");
+    this.props.onFormSubmit();
   };
 
   render() {
@@ -31,7 +23,7 @@ export default class Form extends React.Component {
           <input
             name="name"
             placeholder="Name"
-            value={this.state.form.name}
+            value={this.props.form.name}
             onChange={e => this.handleChange(e, "name")}
           />
           <br />
