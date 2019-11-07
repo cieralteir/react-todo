@@ -11,7 +11,8 @@ export default class App extends React.Component {
       name: "Todo",
       form: {
         name: ""
-      }
+      },
+      items: []
     };
   }
 
@@ -19,13 +20,18 @@ export default class App extends React.Component {
     this.setState(state => ({
       form: { ...state.form, [key]: value }
     }));
-
-    console.log(this.state);
   };
 
   handleFormSubmit = () => {
-    console.log("handle submit");
-  }
+    this.setState(state => ({
+      items: [...state.items, state.form]
+    }));
+
+    // Reset form
+    this.setState(state => ({
+      form: { name: "" }
+    }));
+  };
 
   render() {
     return (
@@ -37,7 +43,7 @@ export default class App extends React.Component {
           onFormSubmit={this.handleFormSubmit}
         />
         <br />
-        <List name={this.state.name} />
+        <List name={this.state.name} items={this.state.items} />
       </div>
     );
   }

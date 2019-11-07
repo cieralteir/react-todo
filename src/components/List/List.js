@@ -10,7 +10,7 @@ export default class List extends React.Component {
 
     items = items.map((item, index) => (
       <li className="item" key={index}>
-        {item}
+        {item.name}
       </li>
     ));
 
