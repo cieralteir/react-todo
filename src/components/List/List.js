@@ -1,21 +1,20 @@
 import React from "react";
+import ListItem from "./ListItem";
 
 export default class List extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  removeItem = index => {
-    this.props.onItemRemove(index);
+  handleItemRemove = item => {
+    this.props.onItemRemove(item);
   };
 
   render() {
     let items = this.props.items || [];
 
     items = items.map((item, index) => (
-      <li className="item" key={index}>
-        {item.name} <button onClick={e => this.removeItem(index)}>remove</button>
-      </li>
+      <ListItem item={item} onItemRemove={this.handleItemRemove} key={index} />
     ));
 
     return (

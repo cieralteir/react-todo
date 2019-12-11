@@ -33,7 +33,9 @@ export default class App extends React.Component {
     }));
   };
 
-  handleItemRemove = index => {
+  handleItemRemove = item => {
+    const index = this.state.items.findIndex(item_ => item_.name === item.name);
+
     this.setState(state => {
       const items = state.items;
       items.splice(index, 1);
